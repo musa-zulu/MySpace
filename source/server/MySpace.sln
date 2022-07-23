@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpace.Api", "MySpace.Api\MySpace.Api.csproj", "{2831CF28-8090-49DF-B876-C9FF66CF6C34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpace.Application", "MySpace.Application\MySpace.Application.csproj", "{736CBA5F-35E2-4A9D-94A2-7ECA48319DD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpace.Contracts", "MySpace.Contracts\MySpace.Contracts.csproj", "{406E694C-A474-42BB-8468-435D9CD79C4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpace.Domain", "MySpace.Domain\MySpace.Domain.csproj", "{F5DC592A-72CB-4CCF-B9E2-15E3331434CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySpace.Infrastructure", "MySpace.Infrastructure\MySpace.Infrastructure.csproj", "{D8633FB2-4CCE-4160-BA47-AEC8D2E1D07B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2831CF28-8090-49DF-B876-C9FF66CF6C34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2831CF28-8090-49DF-B876-C9FF66CF6C34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2831CF28-8090-49DF-B876-C9FF66CF6C34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2831CF28-8090-49DF-B876-C9FF66CF6C34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{736CBA5F-35E2-4A9D-94A2-7ECA48319DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{736CBA5F-35E2-4A9D-94A2-7ECA48319DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{736CBA5F-35E2-4A9D-94A2-7ECA48319DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{736CBA5F-35E2-4A9D-94A2-7ECA48319DD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{406E694C-A474-42BB-8468-435D9CD79C4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{406E694C-A474-42BB-8468-435D9CD79C4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{406E694C-A474-42BB-8468-435D9CD79C4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{406E694C-A474-42BB-8468-435D9CD79C4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5DC592A-72CB-4CCF-B9E2-15E3331434CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5DC592A-72CB-4CCF-B9E2-15E3331434CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5DC592A-72CB-4CCF-B9E2-15E3331434CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5DC592A-72CB-4CCF-B9E2-15E3331434CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8633FB2-4CCE-4160-BA47-AEC8D2E1D07B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8633FB2-4CCE-4160-BA47-AEC8D2E1D07B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8633FB2-4CCE-4160-BA47-AEC8D2E1D07B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8633FB2-4CCE-4160-BA47-AEC8D2E1D07B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>fe700aae-3111-4213-8655-1fcd46c5828d</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MySpace.Contracts\MySpace.Contracts.csproj" />
+    <ProjectReference Include="..\MySpace.Application\MySpace.Application.csproj" />
+    <ProjectReference Include="..\MySpace.Infrastructure\MySpace.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
