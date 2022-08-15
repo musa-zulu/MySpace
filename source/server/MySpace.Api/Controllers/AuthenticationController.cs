@@ -1,47 +1,49 @@
+using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
-using MySpace.Application.Services.Authentication;
 using MySpace.Contracts.Authentication;
+using MediatR;
+using MySpace.Application.Services.Authentication.Common;
+using MySpace.Application.Services.Authentication.Queries.Login;
+using MySpace.Application.Services.Authentication.Commands.Register;
+using MapsterMapper;
 
 namespace MySpace.Api.Controllers;
 
 [ApiController]
-[Route("auth")]
-public class AuthenticationController : ControllerBase
+public class AuthenticationController : ApiController
 {
-    private readonly IAuthenticationService _authenticationService;
+    private readonly ISender _mediator;
+    private readonly IMapper _mapper;
 
-    public AuthenticationController(IAuthenticationService authenticationService)
+    public AuthenticationController(IMediator mediator, IMapper mapper)
     {
-        _authenticationService = authenticationService;
+        _mediator = mediator;
+        _mapper = mapper;
     }
 
     [HttpPost("register")]
-    public IActionResult Register(RegisterRequest request)
+    public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var authResult = _authenticationService.Register(
-            request.FirstName, request.LastName, request.Email, request.Password
-        );
+        var command = _mapper.Map<RegisterCommand>(request);        
+        ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(command);
 
-        var response = new AuthintecationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token);
-        return Ok(response);
+        return registerResult.Match(
+            authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)),
+            errors => Problem(errors)
+        );
     }
 
     [HttpPost("login")]
-    public IActionResult Login(LoginRequest request)
+    public async Task<IActionResult> Login(LoginRequest request)
     {
-        var authResult = _authenticationService.Login(request.Email, request.Password);
+        var query = _mapper.Map<LoginQuery>(request);
+        var authResult = await _mediator.Send(query);
 
-        var response = new AuthintecationResponse(
-                authResult.User.Id,
-                authResult.User.FirstName,
-                authResult.User.LastName,
-                authResult.User.Email,
-                authResult.Token);
-        return Ok(response);
+        if (authResult.IsError && authResult.FirstError == Domain.Common.Errors.Authentication.InvalidCredentials)
+        {
+            return Problem(statusCode: StatusCodes.Status401Unauthorized,
+            title: authResult.FirstError.Description);
+        }
+        return authResult.Match(authResult => Ok(_mapper.Map<AuthenticationResponse>(authResult)), errors => Problem(errors));
     }
 }

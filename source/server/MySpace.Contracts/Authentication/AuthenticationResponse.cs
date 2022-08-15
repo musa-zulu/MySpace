@@ -1,6 +1,6 @@
 namespace MySpace.Contracts.Authentication;
 
-public record AuthintecationResponse(
+public record AuthenticationResponse(
     Guid Id,
     string FirstName,
     string LastName,
