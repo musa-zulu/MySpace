@@ -14,23 +14,23 @@ variables:
 
 steps:
 
-- task: WhiteSource Bolt@19
-  displayName: 'Scan with WhiteSource'
-  inputs:
-    cwd: '$(Agent.BuildDirectory)'
+#- task: WhiteSource Bolt@19
+#  displayName: 'Scan with WhiteSource'
+#  inputs:
+#    cwd: '$(Agent.BuildDirectory)'
 
-- task: SonarCloudPrepare@1
-  displayName: 'Prepare SonarCloud analysis'
-  inputs:
-    SonarCloud: 'sonar-cloud-connection'
-    organization: '$(sonar-cloud-organization-name)'
-    scannerMode: 'MSBuild'
-    projectKey: '$(sonar-cloud-project-key)'
-    projectName: '$(sonar-cloud-project-name)'
-    projectVersion: '$(Build.BuildNumber)'
-    extraProperties: |
-      sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/TestResults/Coverage/coverage.opencover.xml
-      sonar.exclusions=**/wwwroot/lib/**/*
+#- task: SonarCloudPrepare@1
+#  displayName: 'Prepare SonarCloud analysis'
+#  inputs:
+#    SonarCloud: 'sonar-cloud-connection'
+#    organization: '$(sonar-cloud-organization-name)'
+#    scannerMode: 'MSBuild'
+#    projectKey: '$(sonar-cloud-project-key)'
+#    projectName: '$(sonar-cloud-project-name)'
+#    projectVersion: '$(Build.BuildNumber)'
+#    extraProperties: |
+#      sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/TestResults/Coverage/coverage.opencover.xml
+#      sonar.exclusions=**/wwwroot/lib/**/*
 
 - task: DotNetCoreCLI@2
   displayName: 'Run dotnet build'
@@ -38,11 +38,11 @@ steps:
     command: 'build'
     projects: '**/*.csproj'
 
-- task: SonarCloudAnalyze@1
-  displayName: 'Run SonarCloud code analysis'
+#- task: SonarCloudAnalyze@1
+#  displayName: 'Run SonarCloud code analysis'
 
-- task: SonarCloudPublish@1
-  displayName: 'Publish SonarCloud quality gate results'
+#- task: SonarCloudPublish@1
+#  displayName: 'Publish SonarCloud quality gate results'
 
 - task: DotNetCoreCLI@2
   displayName: 'Run dotnet test'
