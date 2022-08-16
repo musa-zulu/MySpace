@@ -4,22 +4,64 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- main
+- master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
 
 steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
-- task: VSTest@2
+
+- task: WhiteSource Bolt@19
+  displayName: 'Scan with WhiteSource'
   inputs:
-    testSelector: 'testAssemblies'
-    testAssemblyVer2: |
-      **\*test*.dll
-      !**\*TestAdapter.dll
-      !**\obj\**
-    searchFolder: '$(System.DefaultWorkingDirectory)'
+    cwd: '$(Agent.BuildDirectory)'
+
+- task: SonarCloudPrepare@1
+  displayName: 'Prepare SonarCloud analysis'
+  inputs:
+    SonarCloud: 'sonar-cloud-connection'
+    organization: '$(sonar-cloud-organization-name)'
+    scannerMode: 'MSBuild'
+    projectKey: '$(sonar-cloud-project-key)'
+    projectName: '$(sonar-cloud-project-name)'
+    projectVersion: '$(Build.BuildNumber)'
+    extraProperties: |
+      sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/TestResults/Coverage/coverage.opencover.xml
+      sonar.exclusions=**/wwwroot/lib/**/*
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run dotnet build'
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+
+- task: SonarCloudAnalyze@1
+  displayName: 'Run SonarCloud code analysis'
+
+- task: SonarCloudPublish@1
+  displayName: 'Publish SonarCloud quality gate results'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run dotnet test'
+  inputs:
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run dotnet publish'
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish artifacts'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
