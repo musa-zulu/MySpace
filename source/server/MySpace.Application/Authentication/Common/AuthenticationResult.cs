@@ -1,6 +1,6 @@
 using MySpace.Domain.Entities;
 
-namespace MySpace.Application.Services.Authentication.Common;
+namespace MySpace.Application.Authentication.Common;
 
 public record AuthenticationResult(
     User User,

@@ -1,8 +1,8 @@
 using ErrorOr;
 using MediatR;
-using MySpace.Application.Services.Authentication.Common;
+using MySpace.Application.Authentication.Common;
 
-namespace MySpace.Application.Services.Authentication.Commands.Register;
+namespace MySpace.Application.Authentication.Commands.Register;
 public record RegisterCommand(
     string FirstName,
     string LastName,

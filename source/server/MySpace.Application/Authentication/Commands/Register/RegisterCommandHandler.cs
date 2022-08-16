@@ -4,9 +4,9 @@ using MySpace.Application.Common.Interfaces.Authentication;
 using MySpace.Application.Common.Interfaces.Persistence;
 using MySpace.Domain.Entities;
 using MySpace.Domain.Common;
-using MySpace.Application.Services.Authentication.Common;
+using MySpace.Application.Authentication.Common;
 
-namespace MySpace.Application.Services.Authentication.Commands.Register;
+namespace MySpace.Application.Authentication.Commands.Register;
 
 public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
 {

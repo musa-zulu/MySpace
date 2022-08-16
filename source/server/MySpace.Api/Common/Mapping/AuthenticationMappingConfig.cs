@@ -1,7 +1,7 @@
 using Mapster;
-using MySpace.Application.Services.Authentication.Commands.Register;
-using MySpace.Application.Services.Authentication.Common;
-using MySpace.Application.Services.Authentication.Queries.Login;
+using MySpace.Application.Authentication.Commands.Register;
+using MySpace.Application.Authentication.Common;
+using MySpace.Application.Authentication.Queries.Login;
 using MySpace.Contracts.Authentication;
 
 namespace MySpace.Api.Common.Mapping;

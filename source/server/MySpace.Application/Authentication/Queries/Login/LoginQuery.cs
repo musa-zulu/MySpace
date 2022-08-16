@@ -1,8 +1,8 @@
 using ErrorOr;
 using MediatR;
-using MySpace.Application.Services.Authentication.Common;
+using MySpace.Application.Authentication.Common;
 
-namespace MySpace.Application.Services.Authentication.Queries.Login;
+namespace MySpace.Application.Authentication.Queries.Login;
 public record LoginQuery(
     string Email,
     string Password) : IRequest<ErrorOr<AuthenticationResult>>;

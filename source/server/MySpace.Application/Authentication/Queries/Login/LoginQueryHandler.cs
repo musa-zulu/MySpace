@@ -4,9 +4,9 @@ using MySpace.Application.Common.Interfaces.Authentication;
 using MySpace.Application.Common.Interfaces.Persistence;
 using MySpace.Domain.Entities;
 using MySpace.Domain.Common;
-using MySpace.Application.Services.Authentication.Common;
+using MySpace.Application.Authentication.Common;
 
-namespace MySpace.Application.Services.Authentication.Queries.Login;
+namespace MySpace.Application.Authentication.Queries.Login;
 
 public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
 {
