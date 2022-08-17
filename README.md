@@ -9,7 +9,7 @@
     MyOfficeSpace API solution is built on Onion Architecture with all essential feature using .NET Core!
   
   <br/>
-      Trello board for user stories can be found here: 
+      Trello board for user stories can be found here: (coming soon)
     <br />  
   </p>
 </p>
