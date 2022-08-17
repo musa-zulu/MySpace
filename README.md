@@ -1,6 +1,5 @@
 # My Space Onion architecture with ASP.NET Core   <br/>   [![Build Status](https://celumusazulu.visualstudio.com/MySpace/_apis/build/status/musa-zulu.MyOfficeSpace%20(1)?branchName=main)](https://celumusazulu.visualstudio.com/MySpace/_build/latest?definitionId=4&branchName=main)
 
-<br />
 <p align="center">
 
   <h3 align="center">Onion Architecture</h3>
