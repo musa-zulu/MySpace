@@ -1,4 +1,4 @@
-# My Office Space Onion architecture with ASP.NET Core   <br/>   [![Build Status](https://celumusazulu.visualstudio.com/MySpace/_apis/build/status/musa-zulu.MyOfficeSpace%20(1)?branchName=main)](https://celumusazulu.visualstudio.com/MySpace/_build/latest?definitionId=4&branchName=main)
+# My Space Onion architecture with ASP.NET Core   <br/>   [![Build Status](https://celumusazulu.visualstudio.com/MySpace/_apis/build/status/musa-zulu.MyOfficeSpace%20(1)?branchName=main)](https://celumusazulu.visualstudio.com/MySpace/_build/latest?definitionId=4&branchName=main)
 
 <br />
 <p align="center">
@@ -48,7 +48,7 @@ Domain in center and building layer top of it. You can call it as Domain-centric
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-My Office Space API solution is built on Onion Architecture with all essential feature using .NET Core.
+My Space API solution is built on Onion Architecture with all essential feature using .NET Core.
 
 ![image](documents/images/OnionArchitecture.png)
 
@@ -70,7 +70,7 @@ Swagger UI
 
 ## Features available in this project
 
-This My Office Space api contains following features.
+This My Space api contains following features.
 
 - [x] Application is implemented on Onion architecture
 - [x] API
