@@ -83,7 +83,7 @@ This My Space api contains following features.
 - [x] Email
 - [x] Health checks
 - [x] JWT authentication
-- [x] React-redux for UI
+- [x] Angular for UI
 - [x] Fluent validations
 
 ## Project description
