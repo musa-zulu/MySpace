@@ -75,16 +75,16 @@ This My Space api contains following features.
 - [x] API
 - [x] Entityframework Core
 - [x] Expection handling
-- [x] Automapper
+- [x] Mapster
 - [x] Versioning
 - [x] Swagger
 - [x] CQRS Pattern 
 - [x] Loggings - seriLog
 - [x] Email
-- [x] Health checks
 - [x] JWT authentication
 - [x] Angular for UI
 - [x] Fluent validations
+- [x] ErrorOr
 
 ## Project description
 
