@@ -1,20 +1,48 @@
 using ErrorOr;
+using FluentValidation;
 using MediatR;
 using MySpace.Application.Authentication.Commands.Register;
 using MySpace.Application.Authentication.Common;
 
 namespace MySpace.Application.Common.Behavious;
 
-public class ValidateRegisterCommandBehavior : IPipelineBehavior<RegisterCommand, ErrorOr<AuthenticationResult>>
+public class ValidationBehavior<TRequest, TResponse> : 
+             IPipelineBehavior<TRequest, TResponse>
+             where TRequest : IRequest<TResponse>
+             where TResponse : IErrorOr
 {
-    public async Task<ErrorOr<AuthenticationResult>> Handle(RegisterCommand request,
-                                                      CancellationToken cancellationToken,
-                                                      RequestHandlerDelegate<ErrorOr<AuthenticationResult>> next)
-    {
-        //logic to be invoked before the handler
-        var result = await next();
-        //logic to be invoked after the handler
+    private readonly IValidator<TRequest>? _validator;
 
-        return result;
+    public ValidationBehavior(IValidator<TRequest>? validator = null)
+    {
+        _validator = validator;
+    }
+
+    public async Task<TResponse> Handle(TRequest request,
+                                        CancellationToken cancellationToken,
+                                        RequestHandlerDelegate<TResponse> next)
+    {
+
+        if (_validator is null)
+        {
+            return await next();
+        }
+
+        var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+
+        if(validationResult.IsValid)
+        {
+            return await next();
+        }
+
+       // var errors = validationResult.Errors.Select(validationFailure => Error.Validation(validationFailure.PropertyName, 
+              //  validationFailure.ErrorMessage)).ToList();
+
+        var errors = validationResult.Errors
+            .ConvertAll(validationFailure => Error.Validation(
+                validationFailure.PropertyName, 
+                validationFailure.ErrorMessage));
+
+        return (dynamic)errors;
     }
 }

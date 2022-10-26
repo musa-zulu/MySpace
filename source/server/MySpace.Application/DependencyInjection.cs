@@ -1,16 +1,17 @@
-using ErrorOr;
+using System.Reflection;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using MySpace.Application.Common.Behavious;
-using MySpace.Application.Authentication.Commands.Register;
-using MySpace.Application.Authentication.Common;
+using FluentValidation;
+
 namespace MySpace.Application;
 public static class DependencyInjection
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {        
         services.AddMediatR(typeof(DependencyInjection).Assembly);
-        services.AddScoped<IPipelineBehavior<RegisterCommand, ErrorOr<AuthenticationResult>>,ValidateRegisterCommandBehavior>();
+        services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         return services;
     }
 }
