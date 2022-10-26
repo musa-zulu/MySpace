@@ -62,7 +62,7 @@ My Space API solution is built on Onion Architecture with all essential feature 
 Plese run the script file "InitialScript" under documents\scripts to create your database
 
 ### Step 4: Build and run application
-
+ - [x] If you are using vs code you can use (dotnet run --project .\MySpace.Api\ or dotnet watch run --project .\MySpace.Api\)
 Swagger UI
 
 ![image](documents/images/swagger-img.PNG)
@@ -111,7 +111,7 @@ we can see that all the Layers are dependent only on the Core Layers
 <details>
   <summary><b>Presentation Layer</b></summary>
   <p>
-    This is a react app found under client folder.
+    This is a react app found under client folder(coming soon).
 
   </p>
 </details>
