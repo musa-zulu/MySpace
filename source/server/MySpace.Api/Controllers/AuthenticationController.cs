@@ -6,10 +6,12 @@ using MySpace.Application.Authentication.Common;
 using MySpace.Application.Authentication.Queries.Login;
 using MySpace.Application.Authentication.Commands.Register;
 using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MySpace.Api.Controllers;
 
-[ApiController]
+[Route("auth")]
+[AllowAnonymous]
 public class AuthenticationController : ApiController
 {
     private readonly ISender _mediator;
