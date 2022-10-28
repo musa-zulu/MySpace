@@ -3,7 +3,7 @@ using MediatR;
 using MySpace.Application.Common.Interfaces.Authentication;
 using MySpace.Application.Common.Interfaces.Persistence;
 using MySpace.Domain.Entities;
-using MySpace.Domain.Common;
+using MySpace.Domain.Common.Errors;
 using MySpace.Application.Authentication.Common;
 
 namespace MySpace.Application.Authentication.Commands.Register;

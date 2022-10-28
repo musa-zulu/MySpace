@@ -1,6 +1,6 @@
 using ErrorOr;
 
-namespace MySpace.Domain.Common;
+namespace MySpace.Domain.Common.Errors;
 
 public static partial class Errors
 {
