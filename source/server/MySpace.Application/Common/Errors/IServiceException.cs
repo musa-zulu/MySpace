@@ -1,5 +1,5 @@
 using System.Net;
-using System.Runtime.InteropServices;
+
 namespace MySpace.Application.Common.Errors;
 
 public interface IServiceException

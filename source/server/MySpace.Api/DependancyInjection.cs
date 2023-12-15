@@ -11,7 +11,7 @@ public static class DependencyInjection
         services.AddControllers();
         services.AddSingleton<ProblemDetailsFactory, MySpaceProblemDetailsFactory>();
         services.AddMappings();
-        
+
         return services;
     }
 }

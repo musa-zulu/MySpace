@@ -1,4 +1,3 @@
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,6 +9,7 @@ using MySpace.Application.Common.Interfaces.Services;
 using MySpace.Infrastructure.Authentication;
 using MySpace.Infrastructure.Persistence;
 using MySpace.Infrastructure.Services;
+using System.Text;
 
 namespace MySpace.Infrastructure;
 public static class DependencyInjection

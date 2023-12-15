@@ -4,7 +4,7 @@ using MySpace.Application.Common.Errors;
 
 namespace MySpace.Api.Controllers;
 
-public class ErrorsController : ControllerBase 
+public class ErrorsController : ControllerBase
 {
     [Route("/error")]
     public IActionResult Error()

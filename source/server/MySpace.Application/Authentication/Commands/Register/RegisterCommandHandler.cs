@@ -1,10 +1,10 @@
 using ErrorOr;
 using MediatR;
+using MySpace.Application.Authentication.Common;
 using MySpace.Application.Common.Interfaces.Authentication;
 using MySpace.Application.Common.Interfaces.Persistence;
-using MySpace.Domain.Entities;
 using MySpace.Domain.Common.Errors;
-using MySpace.Application.Authentication.Common;
+using MySpace.Domain.Entities;
 
 namespace MySpace.Application.Authentication.Commands.Register;
 
@@ -38,7 +38,7 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ErrorOr<A
 
         _userRepository.AddUser(user);
 
-        // Create JWT token        
+        // Create JWT token
         var token = _jwtTokenGenerator.GenerateToken(user);
         return new AuthenticationResult(
             user,

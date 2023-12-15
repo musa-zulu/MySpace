@@ -1,12 +1,10 @@
 using ErrorOr;
 using FluentValidation;
 using MediatR;
-using MySpace.Application.Authentication.Commands.Register;
-using MySpace.Application.Authentication.Common;
 
 namespace MySpace.Application.Common.Behavious;
 
-public class ValidationBehavior<TRequest, TResponse> : 
+public class ValidationBehavior<TRequest, TResponse> :
              IPipelineBehavior<TRequest, TResponse>
              where TRequest : IRequest<TResponse>
              where TResponse : IErrorOr
@@ -30,17 +28,17 @@ public class ValidationBehavior<TRequest, TResponse> :
 
         var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-        if(validationResult.IsValid)
+        if (validationResult.IsValid)
         {
             return await next();
         }
 
-       // var errors = validationResult.Errors.Select(validationFailure => Error.Validation(validationFailure.PropertyName, 
-              //  validationFailure.ErrorMessage)).ToList();
+        // var errors = validationResult.Errors.Select(validationFailure => Error.Validation(validationFailure.PropertyName, 
+        //  validationFailure.ErrorMessage)).ToList();
 
         var errors = validationResult.Errors
             .ConvertAll(validationFailure => Error.Validation(
-                validationFailure.PropertyName, 
+                validationFailure.PropertyName,
                 validationFailure.ErrorMessage));
 
         return (dynamic)errors;

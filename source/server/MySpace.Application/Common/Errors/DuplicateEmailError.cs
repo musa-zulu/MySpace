@@ -1,4 +1,3 @@
-using System.Net;
 using FluentResults;
 
 namespace MySpace.Application.Common.Errors;

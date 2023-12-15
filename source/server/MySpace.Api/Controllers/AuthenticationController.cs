@@ -1,12 +1,12 @@
 using ErrorOr;
-using Microsoft.AspNetCore.Mvc;
-using MySpace.Contracts.Authentication;
+using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MySpace.Application.Authentication.Commands.Register;
 using MySpace.Application.Authentication.Common;
 using MySpace.Application.Authentication.Queries.Login;
-using MySpace.Application.Authentication.Commands.Register;
-using MapsterMapper;
-using Microsoft.AspNetCore.Authorization;
+using MySpace.Contracts.Authentication;
 
 namespace MySpace.Api.Controllers;
 
@@ -26,7 +26,7 @@ public class AuthenticationController : ApiController
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
-        var command = _mapper.Map<RegisterCommand>(request);        
+        var command = _mapper.Map<RegisterCommand>(request);
         ErrorOr<AuthenticationResult> registerResult = await _mediator.Send(command);
 
         return registerResult.Match(

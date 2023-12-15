@@ -1,10 +1,10 @@
 using ErrorOr;
 using MediatR;
+using MySpace.Application.Authentication.Common;
 using MySpace.Application.Common.Interfaces.Authentication;
 using MySpace.Application.Common.Interfaces.Persistence;
-using MySpace.Domain.Entities;
 using MySpace.Domain.Common.Errors;
-using MySpace.Application.Authentication.Common;
+using MySpace.Domain.Entities;
 
 namespace MySpace.Application.Authentication.Queries.Login;
 
@@ -21,19 +21,19 @@ public class LoginQueryHandler : IRequestHandler<LoginQuery, ErrorOr<Authenticat
 
     public async Task<ErrorOr<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
     {
-         // Validate user exists
+        // Validate user exists
         if (_userRepository.GetUserByEmail(query.Email) is not User user)
         {
             return Errors.Authentication.InvalidCredentials;
         }
-        
-        // Validate the password is correct 
+
+        // Validate the password is correct
         if (user.Password != query.Password)
         {
             return Errors.Authentication.InvalidCredentials;
         }
 
-        // Create JWT token  
+        // Create JWT token
         var token = _jwtTokenGenerator.GenerateToken(user);
 
         return new AuthenticationResult(

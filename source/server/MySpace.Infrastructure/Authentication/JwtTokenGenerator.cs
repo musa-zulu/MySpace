@@ -1,23 +1,23 @@
-using System.Text;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using MySpace.Application.Common.Interfaces.Authentication;
+using MySpace.Application.Common.Interfaces.Services;
+using MySpace.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using MySpace.Application.Common.Interfaces.Authentication;
-using Microsoft.IdentityModel.Tokens;
-using MySpace.Application.Common.Interfaces.Services;
-using Microsoft.Extensions.Options;
-using MySpace.Domain.Entities;
+using System.Text;
 
 namespace MySpace.Infrastructure.Authentication;
 
 public class JwtTokenGenerator : IJwtTokenGenerator
 {
-    private readonly IDateTimeProvider _dateTimeProvider;
     private readonly JwtSettings _jwtSettings;
+    private readonly IDateTimeProvider _dateTimeProvider;
 
     public JwtTokenGenerator(IDateTimeProvider dateTimeProvider, IOptions<JwtSettings> jwtOptions)
     {
-        _dateTimeProvider = dateTimeProvider;
         _jwtSettings = jwtOptions.Value;
+        _dateTimeProvider = dateTimeProvider;
     }
 
     public string GenerateToken(User user)
@@ -36,8 +36,8 @@ public class JwtTokenGenerator : IJwtTokenGenerator
         var securityToken = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,
             audience: _jwtSettings.Audience,
+            claims: claims,
             expires: _dateTimeProvider.UtcNow.AddMinutes(_jwtSettings.ExpiryMinutes),
-            claims: claims, 
             signingCredentials: signingCredintials);
 
         return new JwtSecurityTokenHandler().WriteToken(securityToken);
